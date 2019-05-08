@@ -1,8 +1,9 @@
 import React from 'react'
-import Enzyme, { shallow } from 'enzyme'
+import Enzyme, { shallow, mount } from 'enzyme'
 import EnzymeAdapter from 'enzyme-adapter-react-16'
 
 import Board from './Board'
+import config from '../config'
 
 Enzyme.configure({ adapter: new EnzymeAdapter() })
 
@@ -10,8 +11,30 @@ const renderBoard = () => {
   return shallow(<Board />)
 }
 
-describe('Render board correctly', () => {
-  test('Builds board with correct number of cells', () => {
-    const board = renderBoard()
+describe('<Board />', () => {
+  const board = renderBoard()
+  const cells = board.children().children().children().first().props()
+
+  it('Builds board with correct number of rows', () => {
+    expect(board.find('tr').length).toEqual(config.boardHeight)
   })
+
+  it('Builds board with correct number of cells', () => {
+    const cellsExpected = config.boardWidth * config.boardHeight
+    expect(board.find('td').length).toEqual(cellsExpected)
+  })
+
+  it('Assigns correct ID to first cell', () => {
+    const firstCell = board.find('td').first()
+    expect(firstCell.find('#c-0-0').length).toEqual(1)
+  })
+
+  it('Assigns correct ID to first cell', () => {
+    const lastCell = board.find('td').last()
+    const lastRow = config.boardHeight - 1
+    const lastCol = config.boardWidth - 1
+    const lastCellId = '#c-' + lastRow + '-' + lastCol
+    expect(lastCell.find(lastCellId).length).toEqual(1)
+  })
+
 })
