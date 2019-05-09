@@ -1,11 +1,5 @@
-import React from 'react'
-import Enzyme, { shallow, mount } from 'enzyme'
-import EnzymeAdapter from 'enzyme-adapter-react-16'
-
 import Board from './Board'
 import config from '../config'
-
-Enzyme.configure({ adapter: new EnzymeAdapter() })
 
 const renderBoard = () => {
   return shallow(<Board />)
