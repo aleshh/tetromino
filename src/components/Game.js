@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import Board from './Board'
+import { newPiece } from '../actions/pieceActions'
 
 export class Game extends Component {
   static propTypes = {
@@ -14,7 +15,7 @@ export class Game extends Component {
   }
 
   startGame = () => {
-    console.log('Start game.')
+    this.props.newPiece()
   }
 
   render() {
@@ -31,7 +32,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-
+  newPiece
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game)
