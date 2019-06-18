@@ -18,6 +18,7 @@ export default class Piece {
       case 4: return pieceTypes.L
       case 5: return pieceTypes.S
       case 6: return pieceTypes.Z
+      default: return null
     }
   }
 

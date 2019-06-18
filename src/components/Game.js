@@ -7,7 +7,7 @@ import { newPiece } from '../actions/pieceActions'
 
 export class Game extends Component {
   static propTypes = {
-
+    newPiece: PropTypes.func.isRequired
   }
 
   componentDidMount() {
