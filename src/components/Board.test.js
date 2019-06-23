@@ -1,5 +1,4 @@
 import Board from './Board'
-import config from '../config'
 
 const renderBoard = () => {
   return shallow(<Board />)
