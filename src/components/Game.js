@@ -21,14 +21,14 @@ export class Game extends Component {
   render() {
     return (
       <div>
-        <Board />
+        <Board currentPiece={this.props.currentPiece} />
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-
+  currentPiece: state.currentPieceReducer
 })
 
 const mapDispatchToProps = {
