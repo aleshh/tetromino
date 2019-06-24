@@ -47,3 +47,8 @@ td {
   width: 20px;
   height: 20px;
 }
+
+.piece-O, .piece-T, .piece-L, .piece-J, .piece-I, .piece-S, .piece-Z {
+  background-color: red;
+  border: 1px solid black;
+}
