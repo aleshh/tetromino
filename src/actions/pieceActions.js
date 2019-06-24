@@ -8,3 +8,21 @@ export const newPiece = () => (dispatch, getState) => {
     payload: new Piece(initialPieceX)
   })
 }
+
+export const movePieceDown = () => (dispatch, getState) => {
+  dispatch({
+    type: actionTypes.MOVE_PIECE_DOWN
+  })
+}
+
+export const movePieceLeft = () => (dispatch, getState) => {
+  dispatch({
+    type: actionTypes.MOVE_PIECE_LEFT
+  })
+}
+
+export const movePieceRight = () => (dispatch, getState) => {
+  dispatch({
+    type: actionTypes.MOVE_PIECE_RIGHT
+  })
+}

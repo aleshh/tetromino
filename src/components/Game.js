@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import Board from './Board'
-import { newPiece } from '../actions/pieceActions'
+import { newPiece, movePieceDown, movePieceLeft, movePieceRight } from '../actions/pieceActions'
 
 export class Game extends Component {
   static propTypes = {
@@ -16,13 +16,16 @@ export class Game extends Component {
 
   startGame = () => {
     this.props.newPiece()
+
+    setInterval(() => {
+      this.props.movePieceDown()
+    }, this.props.configuration.refreshRate);
   }
 
   render() {
     return (
       <div>
         <Board config={this.props.configuration} currentPiece={this.props.currentPiece} />
-        {/* <Board configuration={configuration} currentPiece={this.props.currentPiece} /> */}
       </div>
     )
   }
@@ -34,7 +37,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  newPiece
+  newPiece, movePieceDown, movePieceLeft, movePieceRight
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game)
