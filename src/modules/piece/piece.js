@@ -2,8 +2,8 @@ import pieceTypes from './piece-types'
 import pieceLayouts from './piece-layouts'
 
 export default class Piece {
-  constructor() {
-    this.position = [0, 0]
+  constructor(initialPieceX) {
+    this.position = [initialPieceX, 0]
     this.type = this.randomType()
     this.rotation = 0
   }
