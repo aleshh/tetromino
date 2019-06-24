@@ -1,7 +1,7 @@
 const defaultState = {
   boardWidth: 10,
   boardHeight: 24,
-  refreshRate: 1000
+  refreshRate: 600
 }
 
 export default function(state=defaultState, action) {

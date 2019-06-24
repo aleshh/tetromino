@@ -17,8 +17,13 @@ export class Game extends Component {
   startGame = () => {
     this.props.newPiece()
 
-    setInterval(() => {
+    let gameStep = 0;
+    const gameLoop = setInterval(() => {
       this.props.movePieceDown()
+      if (gameStep === 10) {
+        clearInterval(gameLoop)
+      }
+      gameStep++
     }, this.props.configuration.refreshRate);
   }
 
