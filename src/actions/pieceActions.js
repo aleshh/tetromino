@@ -26,3 +26,9 @@ export const movePieceRight = () => (dispatch, getState) => {
     type: actionTypes.MOVE_PIECE_RIGHT
   })
 }
+
+export const rotatePiece = () => (dispatch, getState) => {
+  dispatch({
+    type: actionTypes.ROTATE_PIECE
+  })
+}

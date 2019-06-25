@@ -19,6 +19,14 @@ export default function(state={}, action) {
           ...state,
           position: [state.position[0] + 1, state.position[1]]
          }
+    case (actionTypes.ROTATE_PIECE):
+      let newRotation = state.rotation + 1
+      if (newRotation === 4) newRotation = 0
+
+      return {
+        ...state,
+        rotation: newRotation
+      }
     default:
       return state
   }

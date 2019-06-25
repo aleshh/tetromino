@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import KeyboardEventHandler from 'react-keyboard-event-handler'
 
 import Board from './Board'
-import { newPiece, movePieceDown, movePieceLeft, movePieceRight } from '../actions/pieceActions'
+import { newPiece, movePieceDown, movePieceLeft, movePieceRight, rotatePiece } from '../actions/pieceActions'
 
 export class Game extends Component {
   static propTypes = {
@@ -36,6 +36,9 @@ export class Game extends Component {
       case('right'):
         this.props.movePieceRight()
         break
+      case('down'):
+        this.props.rotatePiece()
+        break
       default:
         throw new Error('Key handler not catching a key event')
     }
@@ -60,7 +63,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  newPiece, movePieceDown, movePieceLeft, movePieceRight
+  newPiece, movePieceDown, movePieceLeft, movePieceRight, rotatePiece
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Game)
