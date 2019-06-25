@@ -9,6 +9,16 @@ export default function(state={}, action) {
           ...state,
           position: [state.position[0], state.position[1] + 1]
          }
+    case (actionTypes.MOVE_PIECE_LEFT):
+        return {
+          ...state,
+          position: [state.position[0] - 1, state.position[1]]
+         }
+    case (actionTypes.MOVE_PIECE_RIGHT):
+        return {
+          ...state,
+          position: [state.position[0] + 1, state.position[1]]
+         }
     default:
       return state
   }

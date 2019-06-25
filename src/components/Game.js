@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import KeyboardEventHandler from 'react-keyboard-event-handler'
 
 import Board from './Board'
 import { newPiece, movePieceDown, movePieceLeft, movePieceRight } from '../actions/pieceActions'
@@ -27,9 +28,26 @@ export class Game extends Component {
     }, this.props.configuration.refreshRate);
   }
 
+  handleKeyEvent = (key, e) => {
+    switch(key) {
+      case('left'):
+        this.props.movePieceLeft()
+        break
+      case('right'):
+        this.props.movePieceRight()
+        break
+      default:
+        throw new Error('Key handler not catching a key event')
+    }
+  }
+
   render() {
     return (
       <div>
+        <KeyboardEventHandler
+          handleKeys={['down', 'left', 'right']}
+          onKeyEvent={this.handleKeyEvent}
+        />
         <Board config={this.props.configuration} currentPiece={this.props.currentPiece} />
       </div>
     )
