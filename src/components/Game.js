@@ -5,6 +5,7 @@ import KeyboardEventHandler from 'react-keyboard-event-handler'
 
 import Board from './Board'
 import { newPiece, movePieceDown, movePieceLeft, movePieceRight, rotatePiece } from '../actions/pieceActions'
+import pieceLayouts from '../modules/piece/piece-layouts'
 
 export class Game extends Component {
   static propTypes = {
@@ -20,12 +21,21 @@ export class Game extends Component {
 
     let gameStep = 0;
     const gameLoop = setInterval(() => {
+       if(this.checkForCollision()) {
+        this.props.newPiece()
+      }
       this.props.movePieceDown()
-      if (gameStep === 10) {
+      if (gameStep === 5) {
         clearInterval(gameLoop)
       }
       gameStep++
     }, this.props.configuration.refreshRate);
+  }
+
+  checkForCollision() {
+    if (this.pieceBottomPosition() === this.props.configuration.boardHeight - 1) {
+      console.log('landed! piece bottom position:', this.pieceBottomPosition())
+    }
   }
 
   handleKeyEvent = (key, e) => {
@@ -41,6 +51,23 @@ export class Game extends Component {
         break
       default:
         throw new Error('Key handler not catching a key event')
+    }
+  }
+
+  pieceBottomPosition = () => {
+    const piece = this.props.currentPiece;
+    if (!piece.position) {
+      return null
+    }
+    console.log('piece bottom position:', piece.position[1] + this.pieceBottomEdge())
+    return piece.position[1] + this.pieceBottomEdge()
+  }
+
+  pieceBottomEdge = () => {
+    const piece = this.props.currentPiece
+    const layout = pieceLayouts[piece.type][piece.rotation]
+    for (let i = 3; i > 0; i--) {
+      if (layout[i].indexOf(true) > -1) return i
     }
   }
 
